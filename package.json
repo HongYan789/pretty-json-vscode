@@ -1,9 +1,9 @@
 {
-  "name": "pretty-json",
+  "name": "pretty-json-vscode",
   "displayName": "Pretty JSON",
   "description": "this is pretty json plugin tools",
   "version": "0.0.1",
-  "publisher": "HongYan",
+  "publisher": "HongYan-PrettyJSON",
   "icon": "pretty-json.png",
   "engines": {
     "vscode": "^1.86.0"
