@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const JSONbig = require('json-bigint');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -16,7 +17,14 @@ function activate(context) {
         if (editor) {
             const selection = editor.document.getText(editor.selection);
             try {
-                const formattedJson = JSON.stringify(JSON.parse(selection), null, 4);
+                const formattedJson = JSONbig.stringify(JSONbig.parse(selection, (key, value) => {
+                    if (value instanceof Date) {
+                        return { __type: 'Date', iso: value.toISOString() };
+                    } else if (typeof value === 'bigint') {
+                        return { __type: 'BigInt', value: value.toString() };
+                    }
+                    return value;
+                }), null, 4);
                 editor.edit(editBuilder => {
                     editBuilder.replace(editor.selection, formattedJson);
                 });
@@ -31,7 +39,7 @@ function activate(context) {
         if (editor) {
             const selection = editor.document.getText(editor.selection);
             try {
-                const unformattedJson = JSON.stringify(JSON.parse(selection));
+                const unformattedJson = JSONbig.stringify(JSONbig.parse(selection));
                 editor.edit(editBuilder => {
                     editBuilder.replace(editor.selection, unformattedJson);
                 });

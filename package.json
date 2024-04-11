@@ -2,7 +2,7 @@
   "name": "pretty-json-vscode",
   "displayName": "Pretty JSON",
   "description": "this is pretty json plugin tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "HongYan-PrettyJSON",
   "icon": "pretty-json.png",
   "engines": {
@@ -14,14 +14,16 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "pretty-json-vscode.PrettyJSON",
-      "title": "Pretty JSON"
-    },
-    {
-      "command": "pretty-json-vscode.IndentedJSON",
-      "title": "Indented JSON"
-    }],
+    "commands": [
+      {
+        "command": "pretty-json-vscode.PrettyJSON",
+        "title": "Pretty JSON"
+      },
+      {
+        "command": "pretty-json-vscode.IndentedJSON",
+        "title": "Indented JSON"
+      }
+    ],
     "menus": {
       "editor/context": [
         {
@@ -37,18 +39,18 @@
       ]
     },
     "keybindings": [
-        {
-            "command": "pretty-json-vscode.PrettyJSON",
-            "key": "cmd+j",
-            "mac": "cmd+j",
-            "when": "editorTextFocus"
-        },
-        {
-            "command": "pretty-json-vscode.IndentedJSON",
-            "key": "cmd+ctrl+j",
-            "mac": "cmd+ctrl+j",
-            "when": "editorTextFocus"
-        }
+      {
+        "command": "pretty-json-vscode.PrettyJSON",
+        "key": "cmd+j",
+        "mac": "cmd+j",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "pretty-json-vscode.IndentedJSON",
+        "key": "cmd+ctrl+j",
+        "mac": "cmd+ctrl+j",
+        "when": "editorTextFocus"
+      }
     ]
   },
   "scripts": {
@@ -57,12 +59,16 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.86.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
+    "@types/vscode": "^1.86.0",
     "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8"
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.1.2",
+    "json-bigint": "^1.0.0"
   }
 }
